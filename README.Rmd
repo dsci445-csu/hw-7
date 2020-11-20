@@ -18,8 +18,7 @@ Be sure to `set.seed(445)`.
     
 2. In this problem you will generate simulatted data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
 
-    
-    ```r
+    ```{r}
     library(mvtnorm)
     
     n <- 20

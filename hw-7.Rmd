@@ -1,10 +1,16 @@
-# hw-7
+---
+title: "DSCI445 - Homework 7"
+author: "Your Name"
+date: "Due 12/11/2019 by 4pm"
+output: pdf_document
+---
 
-Homework 7 in DSCI445: Statistical Machine Learning @ CSU
+Be sure to `set.seed(445)` at the beginning of your homework. 
 
-## Assignment
-
-Be sure to `set.seed(445)`.
+```{r}
+#reproducibility
+set.seed(445)
+```
 
 1. Consider the `USArrests` data. We will now perform hierarchical clustering on the states.
 
@@ -18,8 +24,7 @@ Be sure to `set.seed(445)`.
     
 2. In this problem you will generate simulatted data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
 
-    
-    ```r
+    ```{r}
     library(mvtnorm)
     
     n <- 20
