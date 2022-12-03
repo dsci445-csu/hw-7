@@ -16,7 +16,7 @@ Be sure to `set.seed(445)`.
     
     d) What affect does scaling the variables have on the hierarchical clusters obtained? In your opinion, should the variables be scaled before the inter-observation dissimilarities are computed? Provide a justification for your answer.
     
-2. In this problem you will generate simulatted data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
+2. In this problem you will generate simulated data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
 
     
     ```r
@@ -46,8 +46,21 @@ Be sure to `set.seed(445)`.
     
     f) Using the `scale()` function, perform $K$ means clustering with $K = 3$ on the data *after scaling each variable to have standard deviation one*. How do these results compare to those obtained in b)-e)?
     
-3. In this folder, there is a data set called `gene_exp.csv` that consists of $40$ tissue samples with measurements on $1,000$ genes. The first $20$ are from healthy patients while the second $20$ are from a diseased group.
+<!-- 3. In this folder, there is a data set called `gene_exp.csv` that consists of $40$ tissue samples with measurements on $1,000$ genes. The first $20$ are from healthy patients while the second $20$ are from a diseased group. -->
 
-    a) Load the data into `R`. Note, there are no headers in the file.
-    b) Apply hierarchical clustering to the samples using correlation-based distance and plot the dendrogram. Do the genes separate the samples into the two groups? Do your results depend on the type of linkage used?
-    c) Your collaborator wants to know which genes differ the most across the two groups. Suggest a way to answer this question and apply it here.
+<!--     a) Load the data into `R`. Note, there are no headers in the file. -->
+<!--     b) Apply hierarchical clustering to the samples using correlation-based distance and plot the dendrogram. Do the genes separate the samples into the two groups? Do your results depend on the type of linkage used? -->
+<!--     c) Your collaborator wants to know which genes differ the most across the two groups. Suggest a way to answer this question and apply it here. -->
+
+**Be sure to share your server project with the instructor and grader:**
+
+1. Open your hw-7 project on liberator.stat.colostate.edu
+2. Click the drop down on the project (top right side) > Share Project...
+    
+    <img src="share_project.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="25%" />
+  
+3. Click the drop down and add "dsci445instructors" to your project.
+
+    <img src="share_dropdown.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="25%" />
+
+This is how you **receive points** for reproducibility on your homework!
