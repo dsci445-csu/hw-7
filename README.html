@@ -359,24 +359,50 @@ display: none;
 <h2>Assignment</h2>
 <p>Be sure to <code>set.seed(445)</code>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Consider the <code>USArrests</code> data. We will now perform
-hierarchical clustering on the states.</p>
+<li><p>A researcher collects expression measurements for <span class="math inline">\(1,000\)</span> genes in <span class="math inline">\(100\)</span> tissue samples. The data can be
+written as a <span class="math inline">\(1,000 \times 100\)</span>
+matrix, which we call <span class="math inline">\(\boldsymbol
+X\)</span>, in which each row represents a gene and each column
+represents a tissue sample. Each tissue sample was processed on a
+different day, and the columns of <span class="math inline">\(\boldsymbol X\)</span> are ordered so that the
+samples that were processed earliest are on the left and the samples
+that were processed later are on the right. The tissue samples belong to
+two groups: control (C) and treatment (T). The C and T samples were
+processed in a random order across the days. The researcher wished to
+determine whether each gene’s expression measurements differ between the
+treatment and control.</p>
+<p>As a pre-analysis (before comparing T and C), the researcher performs
+a principal component analysis of the data and finds that the first
+principal component (a vector of length <span class="math inline">\(100\)</span>) has strong linear trend from left to
+right and explains <span class="math inline">\(10\)</span>% of the
+variation. The researcher now remembers that each patient sample was run
+on one of two machines, A and B, and machine A was used more often in
+the earlier times with B was used more often later. The researcher has a
+record of which sample was run on which machine.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Using hierarchical clustering with complete linkage and Euclidean
-distance, cluster the states.</p></li>
-<li><p>Cut the dendrogram at a height that results in three distinct
-clusters. Which states belong to which clusters?</p></li>
-<li><p>Hierarchically cluster the states using complete linkage and
-Euclidean distance, <em>after scaling the variables to have standard
-deviation one</em>.</p></li>
-<li><p>What affect does scaling the variables have on the hierarchical
-clusters obtained? In your opinion, should the variables be scaled
-before the inter-observation dissimilarities are computed? Provide a
-justification for your answer.</p></li>
+<li><p>Explain what it means that the first principal component
+“explains 10% of the variation”.</p></li>
+<li><p>The researcher decides to replace the <span class="math inline">\((j, i)\)</span>th element of <span class="math inline">\(\boldsymbol X\)</span> with <span class="math display">\[
+x_{ji} - \phi_{j1} z_{i1}
+\]</span> where <span class="math inline">\(z_{i1}\)</span> is the <span class="math inline">\(i\)</span>th score and <span class="math inline">\(\phi_{j1}\)</span> is the <span class="math inline">\(j\)</span>th loading, for the first principal
+component (performed on <span class="math inline">\(\boldsymbol
+X^\top\)</span>. They will then perform a two-sample <span class="math inline">\(t\)</span>-test on each gene in this new data to
+determine whether its expression differs between the two conditions.
+Critique this idea and suggest a better approach.</p></li>
+<li><p>Design a run a small simulation experiment (generate your own
+data) to determine the superiority of your idea.</p></li>
 </ol></li>
-<li><p>In this problem you will generate simulated data and then perform
-PCA and <span class="math inline">\(K\)</span>-means clustering on the
-data. First run the following to obtain the data.</p>
+<li><p><span class="math inline">\(K\)</span>-means clustering is a
+simple and elegant approach for partitioning a data set into <span class="math inline">\(K\)</span> distinct, non-overlapping clusters. To
+perform <span class="math inline">\(K\)</span>-means clustering, we
+first specify the number of clusters <span class="math inline">\(K\)</span>, and then the <span class="math inline">\(K\)</span>-means algorithm assigns each
+observation to exactly one of the clusters. The clusters are chosen to
+minimize the total within-cluster variation. As is shown in the lab
+solution posted on the class website, <span class="math inline">\(K\)</span>-means clustering can be accomplished
+using the <code>kmeans</code> function in <code>R</code>.</p>
+<p>In this problem you will generate simulated data and then perform PCA
+and <span class="math inline">\(K\)</span>-means clustering on the data.
+First run the following to obtain the data.</p>
 <pre class="r"><code>library(mvtnorm)
 
 n &lt;- 20
@@ -412,21 +438,6 @@ results.</p></li>
 <li><p>Using the <code>scale()</code> function, perform <span class="math inline">\(K\)</span> means clustering with <span class="math inline">\(K = 3\)</span> on the data <em>after scaling each
 variable to have standard deviation one</em>. How do these results
 compare to those obtained in b)-e)?</p></li>
-</ol></li>
-<li><p>In this folder, there is a data set called
-<code>gene_exp.csv</code> that consists of <span class="math inline">\(40\)</span> tissue samples with measurements on
-<span class="math inline">\(1,000\)</span> genes. The first <span class="math inline">\(20\)</span> are from healthy patients while the
-second <span class="math inline">\(20\)</span> are from a diseased
-group.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Load the data into <code>R</code>. Note, there are no headers in the
-file.</li>
-<li>Apply hierarchical clustering to the samples using correlation-based
-distance and plot the dendrogram. Do the genes separate the samples into
-the two groups? Do your results depend on the type of linkage used?</li>
-<li>Your collaborator wants to know which genes differ the most across
-the two groups. Suggest a way to answer this question and apply it
-here.</li>
 </ol></li>
 </ol>
 <p>Turn in in a pdf of your homework to canvas using the provided Rmd

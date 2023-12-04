@@ -6,17 +6,24 @@ Homework 7 in DSCI445: Statistical Machine Learning @ CSU
 
 Be sure to `set.seed(445)`.
 
-1. Consider the `USArrests` data. We will now perform hierarchical clustering on the states.
+1. A researcher collects expression measurements for $1,000$ genes in $100$ tissue samples. The data can be written as a $1,000 \times 100$ matrix, which we call $\boldsymbol X$, in which each row represents a gene and each column represents a tissue sample. Each tissue sample was processed on a different day, and the columns of $\boldsymbol X$ are ordered so that the samples that were processed earliest  are on the left and the samples that were processed later are on the right. The tissue samples belong to two groups: control (C) and treatment (T). The C and T samples were processed in a random order across the days. The researcher wished to determine whether each gene's expression measurements differ between the treatment and control.
 
-    a) Using hierarchical clustering with complete linkage and Euclidean distance, cluster the states.
+    As a pre-analysis (before comparing T and C), the researcher performs a principal component analysis of the data and finds that the first principal component (a vector of length $100$) has strong linear trend from left to right and explains $10$% of the variation. The researcher now remembers that each patient sample was run on one of two machines, A and B, and machine A was used more often in the earlier times with B was used more often later. The researcher has a record of which sample was run on which machine.
     
-    b) Cut the dendrogram at a height that results in three distinct clusters. Which states belong to which clusters?
+    a) Explain what it means that the first principal component "explains 10% of the variation".
     
-    c) Hierarchically cluster the states using complete linkage and Euclidean distance, *after scaling the variables to have standard deviation one*.
+    b) The researcher decides to replace the $(j, i)$th element of $\boldsymbol X$ with
+        $$
+        x_{ji} - \phi_{j1} z_{i1}
+        $$
+        where $z_{i1}$ is the $i$th score and $\phi_{j1}$ is the $j$th loading, for the first principal component (performed on $\boldsymbol X^\top$. They will then perform a two-sample $t$-test on each gene in this new data to determine whether its expression differs between the two conditions. Critique this idea and suggest a better approach.
+        
+    c) Design a run a small simulation experiment (generate your own data) to determine the superiority of your idea.
+        
     
-    d) What affect does scaling the variables have on the hierarchical clusters obtained? In your opinion, should the variables be scaled before the inter-observation dissimilarities are computed? Provide a justification for your answer.
-    
-2. In this problem you will generate simulated data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
+2. $K$-means clustering is a simple and elegant approach for partitioning a data set into $K$ distinct, non-overlapping clusters. To perform $K$-means clustering, we first specify the number of clusters $K$, and then the $K$-means algorithm assigns each observation to exactly one of the clusters. The clusters are chosen to minimize the total within-cluster variation. As is shown in the lab solution posted on the class website, $K$-means clustering can be accomplished using the `kmeans` function in `R`.
+
+    In this problem you will generate simulated data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
 
     
     ```r
@@ -45,12 +52,6 @@ Be sure to `set.seed(445)`.
     e) Now perform $K$ means clustering with $K = 3$ on the first two principal components rather than the raw data. Comment on the results.
     
     f) Using the `scale()` function, perform $K$ means clustering with $K = 3$ on the data *after scaling each variable to have standard deviation one*. How do these results compare to those obtained in b)-e)?
-    
-3. In this folder, there is a data set called `gene_exp.csv` that consists of $40$ tissue samples with measurements on $1,000$ genes. The first $20$ are from healthy patients while the second $20$ are from a diseased group.
-
-    a) Load the data into `R`. Note, there are no headers in the file.
-    b) Apply hierarchical clustering to the samples using correlation-based distance and plot the dendrogram. Do the genes separate the samples into the two groups? Do your results depend on the type of linkage used?
-    c) Your collaborator wants to know which genes differ the most across the two groups. Suggest a way to answer this question and apply it here.
 
 Turn in in a pdf of your homework to canvas using the provided Rmd file as a template. Your Rmd file on the server will also be used in grading, so be sure they are identical.
 
@@ -59,10 +60,16 @@ Turn in in a pdf of your homework to canvas using the provided Rmd file as a tem
 1. Open your `homeworks` project on liberator.stat.colostate.edu
 2. Click the drop down on the project (top right side) > Share Project...
     
+    <div class="figure">
     <img src="share_project.png" alt="plot of chunk unnamed-chunk-2" width="25%" />
+    <p class="caption">plot of chunk unnamed-chunk-2</p>
+    </div>
   
 3. Click the drop down and add "dsci445instructors" to your project.
 
+    <div class="figure">
     <img src="share_dropdown.png" alt="plot of chunk unnamed-chunk-3" width="25%" />
+    <p class="caption">plot of chunk unnamed-chunk-3</p>
+    </div>
 
 This is how you **receive points** for reproducibility on your homework!
